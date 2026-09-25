@@ -22,7 +22,10 @@ int main()
         if (pid == 0)
         {
             // ls command
-            char *args[] = {"ls", NULL};
+        
+            input[strcspn(input, "\n")] = '\0';
+
+            char *args[] = {input, NULL};
 
             execvp(args[0], args);
 
