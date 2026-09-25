@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 int main()
 {
@@ -8,6 +9,12 @@ int main()
     {        
         printf("mini> ");
         fgets(input, sizeof(input), stdin);
+
+        if (strcmp(input, "exit"))
+        {
+            printf("goodbye!\n");
+            break;
+        }
 
         printf("you entered: %s", input);
     }
