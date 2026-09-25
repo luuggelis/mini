@@ -20,16 +20,15 @@ int main()
         __pid_t pid = fork();
 
         if (pid == 0)
-        {
-            // ls command
-        
+        {        
+
             input[strcspn(input, "\n")] = '\0';
 
             char *args[] = {input, NULL};
 
             execvp(args[0], args);
 
-            printf("exec failed\n");
+            printf("NaC\n");
             return 1;
         }
         else 
