@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <unistd.h>
+#include <sys/wait.h>
 #include <string.h>
 
 int main()
@@ -6,17 +8,31 @@ int main()
     char input[256];
 
     while (1)
-    {        
+    {
         printf("mini> ");
         fgets(input, sizeof(input), stdin);
 
-        if (strcmp(input, "exit"))
+        if (strcmp(input, "exit\n") == 0)
         {
-            printf("goodbye!\n");
             break;
         }
 
-        printf("you entered: %s", input);
+        __pid_t pid = fork();
+
+        if (pid == 0)
+        {
+            // ls command
+            char *args[] = {"ls", NULL};
+
+            execvp(args[0], args);
+
+            printf("exec failed\n");
+            return 1;
+        }
+        else 
+        {
+            wait(NULL);
+        }
     }
 
     return 0;
