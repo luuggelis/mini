@@ -22,10 +22,23 @@ int main()
         __pid_t pid = fork();
 
         if (pid == 0)
-        {        
+        {
             input[strcspn(input, "\n")] = '\0';
 
-            char *args[] = {input, NULL};
+            char *args[16];
+            int i = 0;
+
+            char *token = strtok(input, " ");
+
+            while (token != NULL && i < 15)
+            {
+                args[i] = token;
+                i++;
+
+                token = strtok(NULL, " ");
+            }
+
+            args[i] = NULL;
 
             execvp(args[0], args);
 
