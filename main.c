@@ -3,6 +3,8 @@
 #include <sys/wait.h>
 #include <string.h>
 
+// testest
+
 int main()
 {
     char input[256];
@@ -21,7 +23,6 @@ int main()
 
         if (pid == 0)
         {        
-
             input[strcspn(input, "\n")] = '\0';
 
             char *args[] = {input, NULL};
