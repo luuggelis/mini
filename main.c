@@ -3,8 +3,6 @@
 #include <sys/wait.h>
 #include <string.h>
 
-// testest
-
 int main()
 {
     char input[256];
@@ -23,6 +21,8 @@ int main()
 
         if (pid == 0)
         {
+            // child process
+
             input[strcspn(input, "\n")] = '\0';
 
             char *args[16];
@@ -42,11 +42,13 @@ int main()
 
             execvp(args[0], args);
 
-            printf("NaC\n");
+            printf("mini: cnf: %s\n", args[0]);
             return 1;
         }
         else 
         {
+            // parent process
+
             wait(NULL);
         }
     }
